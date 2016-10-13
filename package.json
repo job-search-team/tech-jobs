@@ -19,7 +19,8 @@
     "test": "NODE_ENV=test npm run ava",
     "ava": "ava test/services/jobs/**.js --serial",
     "start": "node src/",
-    "start-dev": "nodemon src/"
+    "start-dev": "nodemon src/",
+    "build": "webpack -p"
   },
   "babel": {
     "presets": [
