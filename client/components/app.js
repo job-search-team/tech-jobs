@@ -11,7 +11,33 @@ class App extends Component {
     super(props)
   }
 
+  // getJobs () {
+  //   const jobs = this.props.api.service('/api/v1/jobs')
+  //   jobs.get()
+  //   .then((res) => {
+  //     console.log("RESULT ", res)
+  //   })
+  //   .catch(err => {
+  //     console.log("ERROR ", err)
+  //   })
+  // }
+
+  searchTerm (term) {
+    const jobs = this.props.api.service(`/api/v1/${term}`)
+    jobs.get()
+    .then((res) => {
+      console.log("RESULT ", res)
+    })
+    .catch(err => {
+      console.log("ERROR ", err)
+    })
+  }
+
   render () {
+    console.log('this.props.api ', this.props.api)
+    // temporary
+    var term = 'time-series/weeks?term=react'
+    {var x = this.getJobs(term)}
     return (
       <div>
         <Menu />
