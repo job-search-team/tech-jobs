@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 
 class JobSearchSideBar extends Component {
+    constructor (props) {
+      super(props)
+
+    }
+
+    handleClick (e) {
+      e.preventDefault();
+      console.log('New log', e)
+    }
+
   render() {
+    console.log("Props ", this.props.getJobs)
     return (
       <div className="col-md-3">
         <form className="form-horizontal">
@@ -45,7 +56,7 @@ class JobSearchSideBar extends Component {
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <button type="submit" className="btn btn-default  center-block">Search</button>
+              <button type="submit" className="btn btn-default  center-block" onClick={this.handleClick}>Search</button>
             </div>
           </div>
         </form>
