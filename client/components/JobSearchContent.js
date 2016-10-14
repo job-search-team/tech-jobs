@@ -6,7 +6,7 @@ class JobSearchContent extends Component {
     return (
       <div className="col-md-9">
         <div className="panel panel-info">
-        <h2>  Searchword: {this.props.searchWord}</h2>
+        <h2 style={{textAlign: "center"}}>Searchword: {this.props.searchWord}</h2>
           <div className="panel-body">
             {this.props.resultList.map((job, index) => {
               return <JobSearchContentRow key={index} job={job} />
