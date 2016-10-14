@@ -7,7 +7,7 @@ class Service {
   }
 
   find(params) {
-    console.log(params)
+    console.log("THIS IS PARAMS", params)
     return db('jobs')
     .join('terms', 'jobs.url', '=', 'terms.job_url')
     .select()

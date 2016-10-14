@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import JobSearchSideBar from './JobSearchSideBar'
 import JobSearchContent from './JobSearchContent'
 import api from '../lib/api'
+import trim from 'trim'
 
 class JobSearch extends Component {
 
@@ -39,16 +40,20 @@ class JobSearch extends Component {
   //   })
   // }
 
-  findJobsByTerm (term) {
+  findJobsByTerm (term, location) {
     const jobsByTerm = api.service('find-jobs-by-term')
     jobsByTerm.find({
       query: {
-        term
+        term: term
       }
     })
     .then((res) => {
-      this.setState({resultList: res})
-      console.log("RESULT ", res)
+      var newList = res
+      if(location) {
+        newList = res.filter((x) => {return trim(x.location) === location
+        })
+      }
+      this.setState({resultList: newList})
     })
     .catch(err => {
       console.log("ERROR ", err)
