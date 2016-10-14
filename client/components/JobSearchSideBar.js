@@ -36,7 +36,7 @@ class JobSearchSideBar extends React.Component {
       <div className="col-md-3">
         <form className="form-horizontal" onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="col-sm-3 control-label">keyword</label>
+            <label className="col-sm-3 control-label">Keyword</label>
             <div className="col-sm-9">
               <input type="text" className="form-control" id="inputEmail3" placeholder="Keyword" onChange={this.handleTerm} />
             </div>

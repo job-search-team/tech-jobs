@@ -9,7 +9,8 @@ class JobSearch extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      resultList: []
+      resultList: [],
+      searchWord: ''
     }
     this.findJobsByTerm = this.findJobsByTerm.bind(this)
   }
@@ -41,6 +42,7 @@ class JobSearch extends Component {
   // }
 
   findJobsByTerm (term, location) {
+    this.setState({searchWord: term})
     const jobsByTerm = api.service('find-jobs-by-term')
     jobsByTerm.find({
       query: {
@@ -65,7 +67,7 @@ class JobSearch extends Component {
       <div className="container" style={{paddingTop:'30px'}}>
         <div className="row">
           <JobSearchSideBar findJobsByTerm = {this.findJobsByTerm} />
-          <JobSearchContent resultList = {this.state.resultList} />
+          <JobSearchContent resultList = {this.state.resultList} searchWord = {this.state.searchWord} />
         </div>
       </div>
     )

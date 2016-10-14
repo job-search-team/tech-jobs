@@ -5,7 +5,7 @@ class JobSearchContentRow extends Component {
     const job = this.props.job
     console.log('THING', job)
     return (
-      <div className="row">
+      <div className="row jobRow">
         <div className="col-md-8">
           <h3><strong>{job.heading}</strong></h3>
           <h4>{job.listing_date}</h4>
