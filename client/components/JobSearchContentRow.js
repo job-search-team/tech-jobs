@@ -10,7 +10,7 @@ class JobSearchContentRow extends Component {
           <strong>{job.heading}</strong>
         </div>
         <div className="col-md-4" style={{borderLeft: '1px solid grey'}}>
-        Madison
+          {job.location}
         </div>
       </div>
     )
