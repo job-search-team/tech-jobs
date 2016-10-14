@@ -5,19 +5,30 @@ class JobSearchSideBar extends React.Component {
   constructor (props) {
     super (props)
     this.state = {
-      keyword: ''
+      keyword: '',
+      location: ''
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleTerm = this.handleTerm.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleCity = this.handleCity.bind(this)
+
   }
 
-  handleChange (e) {
+  handleTerm (e) {
     this.setState({keyword: e.target.value})
   }
 
+  handleCity (e) {
+    this.setState({location: e.target.value})
+    let term = this.state.keyword
+    this.props.findJobsByTerm(term, e.target.value)
+  }
+
   handleSubmit (e) {
+    let term = this.state.keyword
+    let location = this.state.location
     e.preventDefault()
-    this.props.searchTerm(this.state.keyword)
+    this.props.findJobsByTerm(term, location)
   }
 
   render() {
@@ -25,24 +36,25 @@ class JobSearchSideBar extends React.Component {
       <div className="col-md-3">
         <form className="form-horizontal" onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="col-sm-3 control-label">keyword</label>
+            <label className="col-sm-3 control-label">Keyword</label>
             <div className="col-sm-9">
-              <input type="text" className="form-control" id="inputEmail3" placeholder="Keyword" onChange={this.handleChange} />
+              <input type="text" className="form-control" id="inputEmail3" placeholder="Keyword" onChange={this.handleTerm} />
             </div>
           </div>
           <div className="form-group">
             <label className="col-sm-3 control-label">City</label>
             <div className="col-sm-9">
-              <select type="password" className="form-control" id="inputPassword3" defaultValue="3">
-                <option value="1">Wellington</option>
-                <option value="2">Auckland</option>
-                <option value="3">Christchurch</option>
-                <option value="4">Dunedin</option>
-                <option value="5">Hamilton</option>
+              <select type="password" className="form-control" id="inputPassword3" onChange={this.handleCity}>
+              <option disabled selected> Location... </option>
+                <option value="Wellington">Wellington</option>
+                <option value="Auckland Central">Auckland</option>
+                <option value="Christchurch">Christchurch</option>
+                <option value="Dunedin">Dunedin</option>
+                <option value="Hamilton">Hamilton</option>
               </select>
             </div>
           </div>
-          <div className="form-group">
+          {/*<div className="form-group">
             <label className="col-sm-3 control-label">Date from</label>
             <div className="col-sm-9">
               <input type="date" className="form-control" id="inputPassword4" placeholder="Date"/>
@@ -61,7 +73,7 @@ class JobSearchSideBar extends React.Component {
             <div className="col-sm-6">
               <input type="number" className="form-control" placeholder="Salary to"/>
             </div>
-          </div>
+          </div>*/}
           <div className="form-group">
             <div className="col-sm-12">
               <button type="submit" className="btn btn-default  center-block" >Search</button>

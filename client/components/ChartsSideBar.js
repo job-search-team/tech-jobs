@@ -18,10 +18,10 @@ class ChartsSideBar extends Component {
           </Link>
         </div>
         <div className="list-group">
-          <a href="#" className="list-group-item">
-            <h4 className="list-group-item-heading">Job Amount Based On Location</h4>
-            <p className="list-group-item-text">...</p>
-          </a>
+        <Link to="/charts/job-amount-based-on-location" className="list-group-item">
+          <h4 className="list-group-item-heading">Job Amount Based On Location</h4>
+          <p className="list-group-item-text">...</p>
+        </Link>
         </div>
       </div>
     )

@@ -2,12 +2,17 @@ import React, { Component } from 'react'
 import JobSearchSideBar from './JobSearchSideBar'
 import JobSearchContent from './JobSearchContent'
 import api from '../lib/api'
+import trim from 'trim'
 
 class JobSearch extends Component {
 
   constructor (props) {
     super(props)
-
+    this.state = {
+      resultList: [],
+      searchWord: ''
+    }
+    this.findJobsByTerm = this.findJobsByTerm.bind(this)
   }
 
   getJobs () {
@@ -20,8 +25,12 @@ class JobSearch extends Component {
    }
 
   // searchTerm (term) {
-  //   const weeks = api.service('weeks')
-  //   weeks.get()
+  //   const period = api.service('api/v1/time-series/weeks')
+  //   period.find({
+  //     query: {
+  //       term
+  //     }
+  //   })
   //   .then((res) => {
   //     console.log("RESULT ", res)
   //   })
@@ -30,14 +39,21 @@ class JobSearch extends Component {
   //   })
   // }
 
-  searchTerm (term) {
-    const period = api.service('api/v1/time-series/weeks')
-    period.find({
+  findJobsByTerm (term, location) {
+    this.setState({searchWord: term})
+    const jobsByTerm = api.service('find-jobs-by-term')
+    jobsByTerm.find({
       query: {
-        term
+        term: term
       }
     })
     .then((res) => {
+      var newList = res
+      if(location) {
+        newList = res.filter((x) => {return trim(x.location) === location
+        })
+      }
+      this.setState({resultList: newList})
     })
     .catch(err => {
     })
@@ -47,8 +63,8 @@ class JobSearch extends Component {
     return (
       <div className="container" style={{paddingTop:'30px'}}>
         <div className="row">
-          <JobSearchSideBar searchTerm = {this.searchTerm}/>
-          <JobSearchContent />
+          <JobSearchSideBar findJobsByTerm = {this.findJobsByTerm} />
+          <JobSearchContent resultList = {this.state.resultList} searchWord = {this.state.searchWord} />
         </div>
       </div>
     )
