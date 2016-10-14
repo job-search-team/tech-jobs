@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import JobSearchContentRow from './JobSearchContentRow'
 
 class JobSearchContent extends Component {
   render() {
@@ -6,14 +7,9 @@ class JobSearchContent extends Component {
       <div className="col-md-9">
         <div className="panel panel-info">
           <div className="panel-body">
-            <div className="row">
-              <div className="col-md-8">
-                Software Engineer - C or Java
-              </div>
-              <div className="col-md-4" style={{borderLeft: '1px solid grey'}}>
-                Madison
-              </div>
-            </div>
+            {this.props.resultList.map((job, index) => {
+              return <JobSearchContentRow key={index} job={job} />
+            })}
           </div>
         </div>
       </div>

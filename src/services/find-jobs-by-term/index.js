@@ -45,16 +45,16 @@ module.exports = function(){
   const app = this;
 
   // Initialize our service with any options it requires
-  app.use('/find-jobs-by-terms', new Service());
+  app.use('/find-jobs-by-term', new Service());
 
   // Get our initialize service to that we can bind hooks
-  const findJobsByTermService = app.service('/find-jobs-by-terms');
+  const findJobsByTermervice = app.service('/find-jobs-by-term');
 
   // Set up our before hooks
-  findJobsByTermService.before(hooks.before);
+  findJobsByTermervice.before(hooks.before);
 
   // Set up our after hooks
-  findJobsByTermService.after(hooks.after);
+  findJobsByTermervice.after(hooks.after);
 };
 
 module.exports.Service = Service;

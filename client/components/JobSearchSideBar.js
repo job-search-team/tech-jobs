@@ -27,7 +27,7 @@ class JobSearchSideBar extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    this.props.findJobsByTerms(this.state.keyword)
+    this.props.findJobsByTerm(this.state.keyword)
   }
 
   render() {
