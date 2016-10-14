@@ -14,10 +14,8 @@ class JobSearch extends Component {
      const jobs = api.service('/api/v1/jobs')
      jobs.get()
      .then((res) => {
-       console.log("RESULT ", res)
      })
      .catch(err => {
-       console.log("ERROR ", err)
      })
    }
 
@@ -40,10 +38,8 @@ class JobSearch extends Component {
       }
     })
     .then((res) => {
-      console.log("RESULT ", res)
     })
     .catch(err => {
-      console.log("ERROR ", err)
     })
   }
 
