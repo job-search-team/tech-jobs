@@ -1,5 +1,4 @@
-'use strict';
-
+const db = require('../../../data')
 const hooks = require('./hooks');
 
 class Service {
@@ -8,7 +7,11 @@ class Service {
   }
 
   find(params) {
-    return Promise.resolve([]);
+    console.log(params)
+    return db('jobs')
+    .join('terms', 'jobs.url', '=', 'terms.job_url')
+    .select()
+    .where(params.query)
   }
 
   // get(id, params) {
@@ -45,18 +48,18 @@ module.exports = function(){
   app.use('/find-jobs-by-terms', new Service());
 
   // Get our initialize service to that we can bind hooks
-  const find-jobs-by-termService = app.service('/find-jobs-by-terms');
+  const findJobsByTermService = app.service('/find-jobs-by-terms');
 
   // Set up our before hooks
-  find-jobs-by-termService.before(hooks.before);
+  findJobsByTermService.before(hooks.before);
 
   // Set up our after hooks
-  find-jobs-by-termService.after(hooks.after);
+  findJobsByTermService.after(hooks.after);
 };
 
 module.exports.Service = Service;
 
-// 
+//
 // where: (query, callback) => {
 //   db('jobs')
 //   .join('terms', 'jobs.url', '=', 'terms.job_url')

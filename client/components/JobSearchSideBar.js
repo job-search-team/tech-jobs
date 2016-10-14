@@ -5,14 +5,24 @@ class JobSearchSideBar extends React.Component {
   constructor (props) {
     super (props)
     this.state = {
-      keyword: ''
+      keyword: '',
+      city: '',
+      date_from: '',
+      date_to: '',
+      salary_from: '',
+      salary_to: ''
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleTerm = this.handleTerm.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange (e) {
+  handleTerm (e) {
     this.setState({keyword: e.target.value})
+  }
+
+  handleCity (e) {
+    this.setState({city: e.target.value})
+    console.log(this.state.city)
   }
 
   handleSubmit (e) {
@@ -27,13 +37,13 @@ class JobSearchSideBar extends React.Component {
           <div className="form-group">
             <label className="col-sm-3 control-label">keyword</label>
             <div className="col-sm-9">
-              <input type="text" className="form-control" id="inputEmail3" placeholder="Keyword" onChange={this.handleChange} />
+              <input type="text" className="form-control" id="inputEmail3" placeholder="Keyword" onChange={this.handleTerm} />
             </div>
           </div>
           <div className="form-group">
             <label className="col-sm-3 control-label">City</label>
             <div className="col-sm-9">
-              <select type="password" className="form-control" id="inputPassword3" defaultValue="3">
+              <select type="password" className="form-control" id="inputPassword3" defaultValue="3" onChange={this.handleCity}>
                 <option value="1">Wellington</option>
                 <option value="2">Auckland</option>
                 <option value="3">Christchurch</option>
