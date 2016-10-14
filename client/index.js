@@ -6,6 +6,7 @@ import Charts from './components/Charts'
 import ChartJobPrevalence from './components/ChartJobPrevalence'
 import ChartJobAmountBasedOnTech from './components/ChartJobAmountBasedOnTech'
 import { Router, Route, browserHistory } from 'react-router'
+import ChartJobAmountBasedOnLocation from './components/ChartJobAmountBasedOnLocation'
 
 ReactDOM.render(
   <Router history={browserHistory}>
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Route path="/charts" component={Charts}>
           <Route path="/charts/job-prevalence" component={ChartJobPrevalence}/>
           <Route path="/charts/job-amount-based-on-tech" component={ChartJobAmountBasedOnTech}/>
+          <Route path="/charts/job-amount-based-on-location" component={ChartJobAmountBasedOnLocation}/>
         </Route>
       </Route>
   </Router>
