@@ -19,8 +19,9 @@ class JobSearchSideBar extends React.Component {
   }
 
   handleCity (e) {
-    console.log(e.target.value)
     this.setState({location: e.target.value})
+    let term = this.state.keyword
+    this.props.findJobsByTerm(term, e.target.value)
   }
 
   handleSubmit (e) {
