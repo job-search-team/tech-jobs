@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import api from '../lib/api'
-import { VictoryChart, VictoryLine, VictoryLabel, VictoryAxis, VictoryGroup, VictoryScatter } from 'victory'
-import ChartGroup from './chart-group'
+import { 
+  VictoryChart, 
+  VictoryLine, 
+  VictoryLabel, 
+  VictoryAxis, 
+  VictoryGroup, 
+  VictoryScatter } from 'victory'
 import _ from 'lodash'
+
 // whitespace
 class ChartJobPrevalence extends Component {
   constructor (props) {
@@ -54,7 +60,10 @@ class ChartJobPrevalence extends Component {
   render () {
     // avoid renaming 
     var { angular, react } = this.state.data
-    console.log(angular, react)
+
+    // Notice how the VictoryGroups have a lot of repeated code?
+    // You'd normally pull these out into a separate compoent ./chart-group.js
+    // But this appears to mess with the VictoryChart setup
     return (
       <svg width={900} height={500} viewBox='0 0 450 350'>
         <rect x='0' y='0' width='450' height='350' fill='#ccdee8' />
@@ -68,16 +77,30 @@ class ChartJobPrevalence extends Component {
             >
             {`Prevalence of search: `}
           </VictoryLabel>
-          <ChartGroup 
-            data={angular} 
-            x='week' 
-            y='percentage_of_jobs' 
-            lineLabel='Angular' /> 
-          <ChartGroup 
-            data={react} 
-            x='week' 
-            y='percentage_of_jobs' 
-            lineLabel='React' /> 
+          <VictoryGroup style={{data: {strokeWidth: 3}}} data={angular} >
+            <VictoryLine
+              interpolation='cardinal'
+              style={{data: {stroke: '#822722'}}}
+              label='Angular'
+              x='week'
+              y='percentage_of_jobs' />
+            <VictoryScatter
+              style={scatterStyle()}
+              x='week'
+              y='percentage_of_jobs' />
+          </VictoryGroup>
+          <VictoryGroup style={{data: {strokeWidth: 3}}} data={react} >
+            <VictoryLine
+              interpolation='cardinal'
+              style={{data: {stroke: '#822722'}}}
+              label='React'
+              x='week'
+              y='percentage_of_jobs' />
+            <VictoryScatter
+              style={scatterStyle()}
+              x='week'
+              y='percentage_of_jobs' />
+          </VictoryGroup>
           <VictoryLabel x={55} y={70}
             verticalAnchor='end'
             lineHeight={1.2} >
@@ -92,7 +115,6 @@ class ChartJobPrevalence extends Component {
       </svg>
     )
   }
-
 }
 
 export default ChartJobPrevalence
@@ -107,6 +129,19 @@ function titleStyle () {
   }
 }
 
+function scatterStyle () {
+  return {
+    data: {
+      fill: '#822722',
+      stroke: 'white'
+    },
+    labels: {
+      fill: '#822722',
+      fontSize: 8,
+      padding: 4
+    }
+  }
+}
 function prevalenceAxisStyle () {
   return {
     axis: {stroke: 'black'},

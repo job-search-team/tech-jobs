@@ -2,7 +2,10 @@ import React from 'react'
 import { VictoryLine, VictoryGroup, VictoryScatter } from 'victory'
 import _ from 'lodash'
 
-const ChartGroup = ({data, x, y, lineLabel}) => 
+const ChartGroup = ({data, x, y, lineLabel}) => {
+  console.log(data, x, y, lineLabel)
+  console.log('labels', pointLabels(data, y))
+  return (
   <VictoryGroup style={{data: {strokeWidth: 3}}} data={data} >
     <VictoryLine
       interpolation='cardinal'
@@ -14,14 +17,14 @@ const ChartGroup = ({data, x, y, lineLabel}) =>
       style={scatterStyle()}
       x={x}
       y={y}
-      labels={pointLabels(data, x)}
     />
-  </VictoryGroup>;
+  </VictoryGroup>)
+}
 
 export default ChartGroup
 
 function pointLabels (data, key) {
-  return _.map(data, (d) => d.percentage_of_jobs.toString().slice(0, 4))
+  return _.map(data, (d) => d[key].toString().slice(0, 4))
 }
 
 function scatterStyle () {
