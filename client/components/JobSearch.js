@@ -16,13 +16,13 @@ class JobSearch extends Component {
   }
 
   getJobs () {
-     const jobs = api.service('/api/v1/jobs')
-     jobs.get()
+    const jobs = api.service('/api/v1/jobs')
+    jobs.get()
      .then((res) => {
      })
      .catch(err => {
      })
-   }
+  }
 
   // searchTerm (term) {
   //   const period = api.service('api/v1/time-series/weeks')
@@ -49,8 +49,8 @@ class JobSearch extends Component {
     })
     .then((res) => {
       var newList = res
-      if(location) {
-        newList = res.filter((x) => {return trim(x.location) === location
+      if (location) {
+        newList = res.filter((x) => { return trim(x.location) === location
         })
       }
       this.setState({resultList: newList})
@@ -61,10 +61,10 @@ class JobSearch extends Component {
 
   render () {
     return (
-      <div className="container" style={{paddingTop:'30px'}}>
-        <div className="row">
-          <JobSearchSideBar findJobsByTerm = {this.findJobsByTerm} />
-          <JobSearchContent resultList = {this.state.resultList} searchWord = {this.state.searchWord} />
+      <div className='container' style={{paddingTop: '30px'}}>
+        <div className='row'>
+          <JobSearchSideBar findJobsByTerm={this.findJobsByTerm} />
+          <JobSearchContent resultList={this.state.resultList} searchWord={this.state.searchWord} />
         </div>
       </div>
     )

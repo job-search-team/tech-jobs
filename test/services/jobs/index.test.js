@@ -6,7 +6,7 @@ const test = require('ava')
 const jobDb = require('../../../src/services/jobs/scripts/jobs-db')
 
 test.beforeEach(t => {
- return db.migrate.latest()
+  return db.migrate.latest()
   .then(() => {
     console.log('seeding')
     return db.seed.run()
@@ -36,9 +36,8 @@ test.cb('jobService.createCb() adds', t => {
         .where('url', goog.url)
         .asCallback((err, rows) => {
           console.log('rows', rows)
-        t.is(goog.url, rows[0].url)
-        t.end()
-      })
-
+          t.is(goog.url, rows[0].url)
+          t.end()
+        })
   })
 })

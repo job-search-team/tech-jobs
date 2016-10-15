@@ -1,6 +1,7 @@
 // main
 const Url = require('url')
 const map = require('lodash/fp/map')
+const winston = require('winston')
 
 // pull streams
 const pull = require('pull-stream/pull')
@@ -19,7 +20,11 @@ module.exports = recurseSeek
 
 function recurseSeek (searchTerms, page) {
   seek(generateURL(searchTerms, page), (err, result) => {
-    insertJob(result.links, result.next, searchTerms)
+    if (err) { 
+      winston.error(err)
+    } else {
+      insertJob(result.links, result.next, searchTerms)
+    }
   })
 }
 
@@ -40,12 +45,12 @@ function insertJob (links, next, searchTerms) {
     }),
     asyncmap(jobdb.exist),
     filter(job => !job.exist),
-    pullMap(job => { delete job.exist; return job }), 
+    pullMap(job => { delete job.exist; return job }),
     asyncMap(jobDb.createCb),
     onEnd(() => {
       console.log('end', next)
       if (next) {
-        recurseSeek(searchTerms, next) 
+        recurseSeek(searchTerms, next)
       }
     })
   )

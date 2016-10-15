@@ -42,7 +42,7 @@ function jobsPerPeriod (period, callback) {
 }
 
 const insertOrUpdate = period => (termCount, callback) => {
-    db(`${period}s`)
+  db(`${period}s`)
       .where(termCount)
       .select()
       .asCallback((err, rows) => {
@@ -84,18 +84,14 @@ jobsPerPeriod(period, (err, periods) => {
 
 function row (period, termCount, total) {
   return Object.assign(
-    {}, 
-    termCount, 
-    { 
-      percentage_of_jobs: termCount.total_jobs / total, 
-      [`${period}_term`]: `${termCount[period]}_${termCount.term}` 
+    {},
+    termCount,
+    {
+      percentage_of_jobs: termCount.total_jobs / total,
+      [`${period}_term`]: `${termCount[period]}_${termCount.term}`
     }
   )
 }
-
-
-
-
 
 // past months
 // terms joined jobs in past months
@@ -111,10 +107,9 @@ function row (period, termCount, total) {
 //      update
 //
 
-// month: DateTime, 
-// term: string, 
-// percentage_of_jobs: float, 
+// month: DateTime,
+// term: string,
+// percentage_of_jobs: float,
 // total_jobs_per_month: integer
 // total_mentions_per_month: integer
-
 

@@ -27,7 +27,7 @@ module.exports = {
     .where('url', url)
     .asCallback((err, rows) => {
       if (err) callback(err)
-        else callback(null, rows[0])
+      else callback(null, rows[0])
     })
   },
 
