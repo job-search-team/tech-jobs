@@ -27,7 +27,7 @@ module.exports = {
     .where('term', term)
     .asCallback((err, rows) => {
       if (err) callback(err)
-        else callback(null, rows[0])
+      else callback(null, rows[0])
     })
   },
 
@@ -39,8 +39,8 @@ module.exports = {
 
   updateCb: (term, callback) => {
     db('terms')
-    .where('url', job.url)
-    .update(job)
+    .where('url', term.url)
+    .update(term)
     .asCallback(callback)
   }
 }

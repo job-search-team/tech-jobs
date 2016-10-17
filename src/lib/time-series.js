@@ -1,4 +1,4 @@
-const minBy = require('lodash/fp/minBy') 
+const minBy = require('lodash/fp/minBy')
 const range = require('lodash').range
 const map = require('lodash/fp/map')
 const countBy = require('lodash/fp/countBy')
@@ -13,11 +13,9 @@ module.exports = function (data, key, term, end) {
     term: term,
     weekEnd: weekEnd
   }))(range(
-    end, 
-    minBy(key)(data)[key], 
+    end,
+    minBy(key)(data)[key],
     -week
   ))
 }
-
-
 

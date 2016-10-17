@@ -2,16 +2,24 @@
 
 > scrape and analyse web developer jobs
 
-## About
+## Review
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+1. I have installed the `standard` linter and formatter and run `standard --fix` to fix the common errors.
 
-## Todo
+2. I have installed an eslint config file `.eslintrc.yaml` and the required packages.
 
- secure term and jobs routes with hooks
- https://docs.feathersjs.com/hooks/bundled.html
+```js
+// package.json
+  "scripts": {
+    "lint" "eslint . || true",
+    "format": "standard --fix"
 
- paginate terms routes
+  }
+
+```
+
+3. Run the lint command and fix the errors. 
+
 
 
 

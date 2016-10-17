@@ -21,11 +21,11 @@ pull(
   flatten(),
   pullMap(job => {
     const ngrams = gramophone.extract(
-      job.text, 
+      job.text,
       { score: true, min: 2, ngrams: [2, 3] }
     )
     const terms = gramophone.extract(
-      job.text, 
+      job.text,
       { score: true, min: 1, ngrams: 1 }
     )
     const length = job.text.replace(/\n/g, ' ').split(' ').length

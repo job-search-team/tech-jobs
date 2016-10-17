@@ -1,8 +1,8 @@
 import React from 'react'
 
-var wrapComponent = function(Component, props) {
+var wrapComponent = function (Component, props) {
   return React.createClass({
-    render: function() {
+    render: function () {
       return React.createElement(Component, props)
     }
   })

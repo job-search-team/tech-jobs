@@ -17,5 +17,4 @@ module.exports = function (defaultNum, max) {
   app.use('api/v1/jobs', service)
   const jobService = app.service('api/v1/jobs')
   jobService.before(hooks.before)
-
 }

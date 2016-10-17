@@ -9,7 +9,7 @@ module.exports = {
   entry: PATHS.entry,
   output: {
     path: PATHS.output,
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   devServer: {
     contentBase: PATHS.output,
@@ -26,5 +26,5 @@ module.exports = {
     ]
   },
   debug: true,
-  devtool: "eval"
+  devtool: 'eval-source-map'
 }
