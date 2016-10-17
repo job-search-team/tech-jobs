@@ -9,7 +9,7 @@ class ChartJobPrevalence extends Component {
       terms: ['react', 'angular', 'javascript', 'css', 'java']
     }
   }
-  componentDidMount() {
+  componentDidMount () {
     const { terms } = this.state
     const jobs = api.service('/api/v1/time-series/weeks')
     jobs.find({
@@ -21,13 +21,14 @@ class ChartJobPrevalence extends Component {
     })
     .then((res) => {
       var newState = this.prepareData(res.data)
-      console.log('newState', newState);
+      console.log('newState', newState)
       this.setState({data: newState})
     })
     .catch(err => {
+      console.log('ERROR ', err)
     })
   }
-  prepareData(data) {
+  prepareData (data) {
     var result = {}
     var { terms } = this.state
     terms.forEach((t) => {
@@ -40,126 +41,126 @@ class ChartJobPrevalence extends Component {
   }
   render () {
     var { data } = this.state
-    if(!data) return <div> </div>
+    if (!data) return <div />
     var dataAngular = data.angular
     var dataReact = data.react
     return (
       <svg width={900} height={500}
-      viewBox="0 0 450 350"
+        viewBox='0 0 450 350'
       >
-      <rect
-      x="0" y="0"
-      width="450" height="350"
-      fill="#ccdee8"
+        <rect
+          x='0' y='0'
+          width='450' height='350'
+          fill='#ccdee8'
       />
-      <rect
-      x="0"
-      y="0"
-      width="10"
-      height="30"
-      fill="#f01616"
+        <rect
+          x='0'
+          y='0'
+          width='10'
+          height='30'
+          fill='#f01616'
       />
-      <VictoryChart
-      domainPadding={20}
+        <VictoryChart
+          domainPadding={20}
       >
-      <VictoryLabel
-      x={120} y={5}
-      textAnchor="start"
-      verticalAnchor="start"
-      lineHeight={1.2}
-      style={{
-        fill: "#000000",
-        fontFamily: "inherit",
-        fontSize: "18px",
-        fontWeight: "bold"
-      }}
+          <VictoryLabel
+            x={120} y={5}
+            textAnchor='start'
+            verticalAnchor='start'
+            lineHeight={1.2}
+            style={{
+              fill: '#000000',
+              fontFamily: 'inherit',
+              fontSize: '18px',
+              fontWeight: 'bold'
+            }}
       >
-      {`Prevalence of search: `}
-      </VictoryLabel>
-      <VictoryLabel
-      x={55} y={70}
-      verticalAnchor="end"
-      lineHeight={1.2}
+            {`Prevalence of search: `}
+          </VictoryLabel>
+          <VictoryLabel
+            x={55} y={70}
+            verticalAnchor='end'
+            lineHeight={1.2}
       >
-      {"Percentage \n % of jobs"}
-      </VictoryLabel>
-      <VictoryAxis
-      standalone={false}
-      style={{
-        axis: {stroke: "black"},
-        grid: {strokeWidth: 2},
-        tickLabels: {fontSize: 12},
-        axisLabel: {fontsize: 16}
-      }}
-      label="Weeks"
+            {'Percentage \n % of jobs'}
+          </VictoryLabel>
+          <VictoryAxis
+            standalone={false}
+            style={{
+              axis: {stroke: 'black'},
+              grid: {strokeWidth: 2},
+              tickLabels: {fontSize: 12},
+              axisLabel: {fontsize: 16}
+            }}
+            label='Weeks'
       />
-      <VictoryAxis dependentAxis
-      domain={[0, 1]}/>
-      <VictoryGroup
-      style={{
-        data: {strokeWidth: 3}
-      }}
-      data={dataReact}
+          <VictoryAxis dependentAxis
+            domain={[0, 1]} />
+          <VictoryGroup
+            style={{
+              data: {strokeWidth: 3}
+            }}
+            data={dataReact}
       >
-      <VictoryLine
-      interpolation={"cardinal"}
-      style={{
-        data: {stroke: "#822722"}
-      }}
-      label="React"
-      x={'week'}
-      y={'percentage_of_jobs'}
+            <VictoryLine
+              interpolation={'cardinal'}
+              style={{
+                data: {stroke: '#822722'}
+              }}
+              label='React'
+              x={'week'}
+              y={'percentage_of_jobs'}
       />
-      <VictoryScatter
-      style={{
-        data: {
-          fill: "#822722",
-          stroke: "white"
-        },
-        labels: {
-          fill: "#822722",
-          fontSize: 8,
-          padding: 4
-        }
-      }}
-      x={'week'}
-      y={'percentage_of_jobs'}
-      labels={_.map(dataReact, (d) => d.percentage_of_jobs.toString().slice(0, 4) )}
+            <VictoryScatter
+              style={{
+                data: {
+                  fill: '#822722',
+                  stroke: 'white'
+                },
+                labels: {
+                  fill: '#822722',
+                  fontSize: 8,
+                  padding: 4
+                }
+              }}
+              x={'week'}
+              y={'percentage_of_jobs'}
+              labels={_.map(dataReact, (d) => d.percentage_of_jobs.toString().slice(0, 4))}
       />
-      </VictoryGroup>
-      <VictoryGroup
-      style={{
-        data: {strokeWidth: 3}
-      }}
-      data={dataAngular}
+          </VictoryGroup>
+          <VictoryGroup
+            style={{
+              data: {strokeWidth: 3}
+            }}
+            data={dataAngular}
       >
-      <VictoryLine
-      interpolation={"cardinal"}
-      style={{
-        data: {stroke: "#822722"}
-      }}
-      label="Angular"
-      x={'week'}
-      y={'percentage_of_jobs'}
+            <VictoryLine
+              interpolation={'cardinal'}
+              style={{
+                data: {stroke: '#822722'}
+              }}
+              label='Angular'
+              x={'week'}
+              y={'percentage_of_jobs'}
       />
-      <VictoryScatter
-      style={{
-        data: {
-          fill: "#822722",
-          stroke: "white"
-        },
-        labels: {
-          fill: "#822722",
-          fontSize: 8,
-          padding: 4
-        }
-      }}
-      x={'week'}
-      y={'percentage_of_jobs'}
-      labels={_.map(dataAngular, (d) => d.percentage_of_jobs.toString().slice(0, 4) )}
+            <VictoryScatter
+              style={{
+                data: {
+                  fill: '#822722',
+                  stroke: 'white'
+                },
+                labels: {
+                  fill: '#822722',
+                  fontSize: 8,
+                  padding: 4
+                }
+              }}
+              x={'week'}
+              y={'percentage_of_jobs'}
+              labels={_.map(dataAngular, (d) => d.percentage_of_jobs.toString().slice(0, 4))}
       />
-      </VictoryGroup>
-      </VictoryChart>
+          </VictoryGroup>
+        </VictoryChart>
       </svg>
     )
   }

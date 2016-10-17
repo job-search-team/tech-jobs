@@ -1,13 +1,13 @@
 const db = require('../../../data')
-const hooks = require('./hooks');
+const hooks = require('./hooks')
 
 class Service {
-  constructor(options) {
-    this.options = options || {};
+  constructor (options) {
+    this.options = options || {}
   }
 
-  find(params) {
-    console.log("THIS IS PARAMS", params)
+  find (params) {
+    console.log('THIS IS PARAMS', params)
     return db('jobs')
     .join('terms', 'jobs.url', '=', 'terms.job_url')
     .select()
@@ -41,23 +41,23 @@ class Service {
   // }
 }
 
-module.exports = function(){
-  const app = this;
+module.exports = function () {
+  const app = this
 
   // Initialize our service with any options it requires
-  app.use('/find-jobs-by-term', new Service());
+  app.use('/find-jobs-by-term', new Service())
 
   // Get our initialize service to that we can bind hooks
-  const findJobsByTermervice = app.service('/find-jobs-by-term');
+  const findJobsByTermervice = app.service('/find-jobs-by-term')
 
   // Set up our before hooks
-  findJobsByTermervice.before(hooks.before);
+  findJobsByTermervice.before(hooks.before)
 
   // Set up our after hooks
-  findJobsByTermervice.after(hooks.after);
-};
+  findJobsByTermervice.after(hooks.after)
+}
 
-module.exports.Service = Service;
+module.exports.Service = Service
 
 //
 // where: (query, callback) => {

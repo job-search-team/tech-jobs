@@ -40,12 +40,12 @@ function insertJob (links, next, searchTerms) {
     }),
     asyncmap(jobdb.exist),
     filter(job => !job.exist),
-    pullMap(job => { delete job.exist; return job }), 
+    pullMap(job => { delete job.exist; return job }),
     asyncMap(jobDb.createCb),
     onEnd(() => {
       console.log('end', next)
       if (next) {
-        recurseSeek(searchTerms, next) 
+        recurseSeek(searchTerms, next)
       }
     })
   )

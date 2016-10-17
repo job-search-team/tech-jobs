@@ -10,14 +10,14 @@ import ChartJobAmountBasedOnLocation from './components/ChartJobAmountBasedOnLoc
 
 ReactDOM.render(
   <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <Route path="/search" component={JobSearch}/>
-        <Route path="/charts" component={Charts}>
-          <Route path="/charts/job-prevalence" component={ChartJobPrevalence}/>
-          <Route path="/charts/job-amount-based-on-tech" component={ChartJobAmountBasedOnTech}/>
-          <Route path="/charts/job-amount-based-on-location" component={ChartJobAmountBasedOnLocation}/>
-        </Route>
+    <Route path='/' component={App}>
+      <Route path='/search' component={JobSearch} />
+      <Route path='/charts' component={Charts}>
+        <Route path='/charts/job-prevalence' component={ChartJobPrevalence} />
+        <Route path='/charts/job-amount-based-on-tech' component={ChartJobAmountBasedOnTech} />
+        <Route path='/charts/job-amount-based-on-location' component={ChartJobAmountBasedOnLocation} />
       </Route>
+    </Route>
   </Router>
   , document.querySelector('main')
 )

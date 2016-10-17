@@ -1,7 +1,7 @@
 const Nightmare = require('nightmare')
 
 module.exports = function seek (url, callback) {
-  //console.log('url', url)
+  // console.log('url', url)
 
   return new Nightmare({show: false})
   .goto(url)

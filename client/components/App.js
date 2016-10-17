@@ -3,11 +3,7 @@ import Menu from './Menu'
 import { browserHistory } from 'react-router'
 
 class App extends Component {
-
-  constructor (props) {
-    super(props)
-  }
-  componentDidMount() {
+  componentDidMount () {
     browserHistory.push('/search')
   }
   render () {

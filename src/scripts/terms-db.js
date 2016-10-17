@@ -27,7 +27,7 @@ module.exports = {
     .where('term', term)
     .asCallback((err, rows) => {
       if (err) callback(err)
-        else callback(null, rows[0])
+      else callback(null, rows[0])
     })
   },
 

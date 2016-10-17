@@ -1,35 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { VictoryBar, VictoryChart, VictoryLabel } from 'victory'
 
-
-class ChartJobAmountBasedOnLocation extends Component {
-
-  render () {
-    return (
-      <svg width={500} height={500}>
+function ChartJobAmountBasedOnLocation () {
+  return (
+    <svg width={500} height={500}>
       <VictoryChart>
-      <VictoryLabel
+        <VictoryLabel
           x={5} y={35}
-          verticalAnchor="end"
-          lineHeight={1.2}
-        >
-          {"Number of Jobs"}
+          verticalAnchor='end'
+          lineHeight={1.2}>
+          {'Number of Jobs'}
         </VictoryLabel>
 
         <VictoryLabel
-            x={20} y={290}
-            horizontalAnchor="end"
-            lineHeight={1.2}
-          >
-            {"Location"}
+          x={20} y={290}
+          horizontalAnchor='end'
+          lineHeight={1.2}
+        >
+          {'Location'}
         </VictoryLabel>
 
         <VictoryBar />
       </VictoryChart>
-      </svg>
-    )
-  }
-
+    </svg>
+  )
 }
 
 export default ChartJobAmountBasedOnLocation
