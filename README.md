@@ -1,4 +1,22 @@
-# Seek
+# Dev Jobs
+
+## redux thunk notes
+
+you will need:
+
+1. action creators/
+2. reducers/
+3. state/
+
+4. createStore, apply middleware,
+5. 
+
+
+
+
+
+
+
 
 > scrape and analyse web developer jobs
 

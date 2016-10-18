@@ -1,4 +1,13 @@
 import React from 'react'
+import store from '../store'
+import { findJobsByTerm } from '../action-creators'
+
+// store check
+//  // applymiddleware thunk
+// initialstate check
+// action-creators
+// reducers check
+//
 
 class JobSearchSideBar extends React.Component {
 
@@ -30,7 +39,8 @@ class JobSearchSideBar extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault() // always at the top of scope
-    this.props.findJobsByTerm(this.state.term, this.state.location)
+    store.dispatch(findJobsByTerm(this.state.term, this.state.location))
+  //  this.props.findJobsByTerm(this.state.term, this.state.location)
   }
 
   render () {
